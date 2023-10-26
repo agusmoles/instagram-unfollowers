@@ -1,5 +1,5 @@
 # Instagram Unfollowers by Agus Moles
-### Inspired on https://github.com/davidarroyo1234/InstagramUnfollowers !
+Inspired on https://github.com/davidarroyo1234/InstagramUnfollowers !
 
 
 A nifty tool that lets you see who doesn't follow you back on Instagram.  
