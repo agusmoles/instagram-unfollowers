@@ -1,4 +1,5 @@
 :root {
+  --black: #000;
   --white: #fff;
   --lightOrange: #f09433;
   --orange: #e6683c;
@@ -21,7 +22,8 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Roboto";
+  font-family: "Roboto", "Noto Sans", "Droid Sans", "Helvetica", Arial,
+    sans-serif;
 }
 
 button {
@@ -83,6 +85,7 @@ body {
 .scan-btn {
   border-radius: 50%;
   background: var(--white);
+  color: var(--black);
   text-align: center;
   padding: 10px;
   border: 0;

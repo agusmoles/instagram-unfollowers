@@ -409,14 +409,14 @@ function App() {
           <article className="description">
             <h3>Thank you so much for using the app!</h3>
 
-            {successfullyUnfollowed?.length && (
+            {successfullyUnfollowed?.length !== 0 && (
               <p>
                 <strong>✔ Unfollowed users:</strong>{" "}
                 <ul>{successfullyUnfollowed}</ul>
               </p>
             )}
 
-            {failedUnfollowed?.length && (
+            {failedUnfollowed?.length !== 0 && (
               <p>
                 <strong>❌ Failed to unfollow:</strong>{" "}
                 <ul>{failedUnfollowed}</ul>
