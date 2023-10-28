@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 // eslint-disable-next-line react/no-deprecated
 import { render } from "react-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -248,9 +248,12 @@ function App() {
     ?.filter((log) => log.unfollowedSuccessfully)
     .map(({ user }) => <li key={user.username}>{user.username}</li>);
 
-  const showedResults =
-    state.filters &&
-    state.results?.filter((result) => {
+  const showedResults = state.results?.filter((result) => {
+    if (state.searchTerm) {
+      return result.username.toLowerCase().includes(state.searchTerm);
+    }
+
+    if (state.filters) {
       if (state.filters.length === 0) return true;
       const showPrivate = state.filters.includes("private");
       const showVerified = state.filters.includes("verified");
@@ -268,9 +271,10 @@ function App() {
         isNewUnfollower(oldResults, result)
       )
         return true;
+    }
 
-      return false;
-    });
+    return false;
+  });
 
   const handleSelectAll = () => {
     setState((prevState) => {
@@ -286,6 +290,18 @@ function App() {
       return {
         ...prevState,
         selectedResults: showedResults,
+      };
+    });
+  };
+
+  const handleSearchTerm = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+    setState((prevState) => {
+      if (prevState.status !== "scanning") return prevState;
+
+      return {
+        ...prevState,
+        searchTerm,
       };
     });
   };
@@ -342,6 +358,12 @@ function App() {
             <div>
               Showing {showedResults?.length} of {state.results.length} users
             </div>
+
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={handleSearchTerm}
+            />
 
             {state.percentage === 100 && (
               <button className="select-all-btn" onClick={handleSelectAll}>
