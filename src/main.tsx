@@ -365,13 +365,11 @@ function App() {
               onChange={handleSearchTerm}
             />
 
-            {state.percentage === 100 && (
-              <button className="select-all-btn" onClick={handleSelectAll}>
-                {state.selectedResults.length === showedResults?.length
-                  ? "Unselect All"
-                  : "Select All"}
-              </button>
-            )}
+            <button className="select-all-btn" onClick={handleSelectAll}>
+              {state.selectedResults.length === showedResults?.length
+                ? "Unselect All"
+                : "Select All"}
+            </button>
 
             <button className="unfollow-btn" onClick={handleUnfollow}>
               Unfollow {state.selectedResults.length} users
