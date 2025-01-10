@@ -28,6 +28,10 @@ function App() {
     "iu-old-results",
     null
   );
+  const [unfollowedUsers, setUnfollowedUsers] = useLocalStorage<Node[]>(
+    "iu-unfollowed-users",
+    []
+  );
 
   useEffect(() => {
     const onBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -153,6 +157,15 @@ function App() {
     if (usersToUnfollow.length === 0) return;
     const alertMessage = `⚠ Going to unfollow ${usersToUnfollow.length} users, are you sure?`;
     if (!confirm(alertMessage)) return;
+
+    const uniqueUnfollowedUsers = [
+      ...unfollowedUsers,
+      ...usersToUnfollow,
+    ].filter(
+      (user, index, self) => index === self.findIndex((t) => t.id === user.id)
+    );
+
+    setUnfollowedUsers(uniqueUnfollowedUsers);
 
     setState((prevState) => {
       if (prevState.status !== "scanning") return prevState;
@@ -374,6 +387,15 @@ function App() {
             <button className="unfollow-btn" onClick={handleUnfollow}>
               Unfollow {state.selectedResults.length} users
             </button>
+
+            <section>
+              Previous unfollowed users:
+              <ul>
+                {unfollowedUsers?.map((user) => (
+                  <li key={`unfollowed-${user.id}`}>{user.username}</li>
+                ))}
+              </ul>
+            </section>
           </article>
 
           <article className="users-container">
