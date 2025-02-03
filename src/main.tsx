@@ -243,10 +243,10 @@ function App() {
       await sleep(Math.floor(Math.random() * (6000 - 4000)) + 4000);
 
       if (counter % 5 === 0) {
-        toast.info("😴 Sleeping 5 minutes to prevent getting temp blocked", {
-          autoClose: 300_000,
+        toast.info("😴 Sleeping 30 secs to prevent getting temp blocked", {
+          autoClose: 30_000,
         });
-        await sleep(300_000);
+        await sleep(30_000);
       }
     }
 
