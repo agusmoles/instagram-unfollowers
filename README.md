@@ -1,3 +1,6 @@
+# ⚠️⚠️DEPRECATED!⚠️⚠️
+Use [David's one](https://github.com/davidarroyo1234/InstagramUnfollowers) that he improved it a lot and this one doesn't make sense anymore
+
 # Instagram Unfollowers by Agus Moles
 Inspired on https://github.com/davidarroyo1234/InstagramUnfollowers !
 
